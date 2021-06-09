@@ -54,6 +54,8 @@ def atoms(formula):
     """
     pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
 
+    if isinstance(formula, Atom): # Verificação se a formula já é uma atômica.
+        return formula, print(formula)
 
 def number_of_atoms(formula):
     """Returns the number of atoms occurring in a formula.
