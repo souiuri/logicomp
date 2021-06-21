@@ -59,7 +59,10 @@ def atoms(formula):
     if isinstance(formula, Not):
         return atoms(formula.inner)
     if isinstance(formula, Implies) or isinstance(formula, And) or isinstance(formula, Or):
-
+        for i in range(1, number_of_atoms(formula)):
+            a = atoms(formula.left)
+            b = atoms(formula.right)
+        return a,b
 
 def number_of_atoms(formula):
     """Returns the number of atoms occurring in a formula.
@@ -69,13 +72,22 @@ def number_of_atoms(formula):
     must return 3 (Observe that this function counts the repetitions of atoms)
     """
     pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
+    if isinstance(formula, Atom):
+        return 1
+    if isinstance(formula, Not):
+        return number_of_atoms(formula.inner)
+    if isinstance(formula, Implies) or isinstance(formula, And) or isinstance(formula, Or):
+        return number_of_atoms(formula.left) + number_of_atoms(formula.right)
 
 def number_of_connectives(formula):
     """Returns the number of connectives occurring in a formula."""
     pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
-
+    if isinstance(formula, Atom):
+        return 0
+    if isinstance(formula, Not):
+        return number_of_connectives(formula.inner) + 1
+    if isinstance(formula, Not) or isinstance(formula, Implies) or isinstance(formula, And) or isinstance(formula, Or):
+        return number_of_connectives(formula.left) + number_of_connectives(formula.right) + 1
 def is_literal(formula):
     """Returns True if formula is a literal. It returns False, otherwise"""
     pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========

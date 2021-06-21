@@ -15,8 +15,9 @@ formula7 = Implies(Not(And(Atom('p'), Atom('s'))), And(Atom('q'), Atom('r')))  #
 formula8 = Implies(Not(And(Atom('p'), Atom('s'))), And(Atom('q'), Not(And(Atom('p'), Atom('s')))))
 # ((¬(p /\ s)) -> (q /\ (¬(p /\ s))))
 
+print('formula8:', formula8)
+print(atoms(formula8))
 
-atoms(formula3)
 print(formula1 == formula3)
 print(formula1 == formula2)
 print(formula3 == And(Atom('p'), Atom('q')))
@@ -43,7 +44,6 @@ print('length of formula8:', length(formula8))
 print('subformulas of formula8:')
 for subformula in subformulas(formula8):
     print(subformula)
-
 #  we have shown in class that for all formula A, len(subformulas(A)) <= length(A):
 # for example, for formula8:
 print('number of subformulas of formula8:', len(subformulas(formula8)))
